@@ -16,6 +16,7 @@ public class DbConnection<T> {
 	// The T object must have a constructor which inputs ALL the information
 	public void create(T t) {
 
+		// Skal skabes hvergang den lukkes.
 		this.em = emf.createEntityManager();
 		this.et = em.getTransaction();
 
@@ -35,7 +36,7 @@ public class DbConnection<T> {
 
 	public T read(T t, int id) {
 
-		this.em = emf.createEntityManager();
+		em.flush();
 		this.et = em.getTransaction();
 
 		T returnObject;

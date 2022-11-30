@@ -16,6 +16,8 @@
         <junit.version>5.7.1</junit.version>
     </properties>
 
+    <!-- Hibernate -->
+
     <dependencies>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -36,6 +38,8 @@
             <artifactId>sqlite-dialect</artifactId>
             <version>0.1.2</version>
         </dependency>
+
+        <!-- Junit -->
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
