@@ -5,20 +5,20 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+// Dette er en class<T>, så derfor skal den specificeres
 public class DbConnection<T> {
 
-	private EntityManagerFactory emf;
+	//EMF opretter vores EM, som opretter vores ET. Dette kan ses i constructoren.
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
 	private EntityManager em;
 	private EntityTransaction et;
 
-	public DbConnection() {
-		this.emf = emf = Persistence.createEntityManagerFactory("default");
-		this.em = emf.createEntityManager();
-		this.et = em.getTransaction();
-	}
-
 	// The T object must have a constructor which inputs ALL the information
 	public void create(T t) {
+
+		this.em = emf.createEntityManager();
+		this.et = em.getTransaction();
+
 		try {
 			et.begin();
 
@@ -30,11 +30,13 @@ public class DbConnection<T> {
 				et.rollback();
 			}
 			em.close();
-			emf.close();
 		}
 	}
 
 	public T read(T t, int id) {
+
+		this.em = emf.createEntityManager();
+		this.et = em.getTransaction();
 
 		T returnObject;
 
@@ -49,13 +51,15 @@ public class DbConnection<T> {
 				et.rollback();
 			}
 			em.close();
-			emf.close();
 		}
 
 		return returnObject;
 	}
 
 	public void update(T t) {
+
+		this.em = emf.createEntityManager();
+		this.et = em.getTransaction();
 
 		try {
 			et.begin();
@@ -68,12 +72,14 @@ public class DbConnection<T> {
 				et.rollback();
 			}
 			em.close();
-			emf.close();
 		}
 
 	}
 
 	public void delete(T t) {
+
+		this.em = emf.createEntityManager();
+		this.et = em.getTransaction();
 
 		try {
 			et.begin();
@@ -86,7 +92,6 @@ public class DbConnection<T> {
 				et.rollback();
 			}
 			em.close();
-			emf.close();
 		}
 
 	}

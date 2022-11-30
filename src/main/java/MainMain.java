@@ -1,12 +1,5 @@
 import hTests.EddieBlackTongue;
-import hTests.FredFlintStone;
-import hTests.Test;
 import orm.DbConnection;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 
 public class MainMain {
 
@@ -14,8 +7,10 @@ public class MainMain {
 
 		DbConnection<EddieBlackTongue> test = new DbConnection<>();
 
-		EddieBlackTongue test2 = new EddieBlackTongue(1, "test");
+		EddieBlackTongue test2 = new EddieBlackTongue("blah");
 
 		test.create(test2);
+
+		System.out.println(test.read(test2, 0));
 	}
 }
